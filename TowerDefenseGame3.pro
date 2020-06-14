@@ -27,6 +27,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     defensetowerpit.cpp \
+    mywindow.cpp \
     selectionbox.cpp \
     defetowerparent.cpp \
     greenturret.cpp \
@@ -39,6 +40,7 @@ SOURCES += \
 HEADERS += \
         mainwindow.h \
     defensetowerpit.h \
+    mywindow.h \
     selectionbox.h \
     globalstruct.h \
     defetowerparent.h \
