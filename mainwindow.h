@@ -24,7 +24,7 @@ private:
 
     void paintEvent(QPaintEvent *);         //绘图事件
     void mousePressEvent(QMouseEvent *);    //鼠标点击事件
-//    void mouseMoveEvent(QMouseEvent *);   //鼠标移动事件
+    void mouseMoveEvent(QMouseEvent *);   //鼠标移动事件
 
     void DrawMapArr(QPainter&);             //用于画出地图函数
     void DrawSelectionBox(QPainter&);       //用于画出选择框

@@ -3,7 +3,7 @@
 
 #include <QVector>
 #include <QString>
-#include "globalstruct.h"   //坐标结构
+#include "globalstruct.h"   //全局结构
 
 //怪物类
 class Monster

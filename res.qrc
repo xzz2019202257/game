@@ -34,5 +34,7 @@
         <file>image/shell3.png</file>
         <file>image/stone.png</file>
         <file>image/upgrade.png</file>
+        <file>image/back.jpg</file>
+        <file>image/game.mp3</file>
     </qresource>
 </RCC>

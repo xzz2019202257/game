@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QMainWindow>
 #include <QDebug>
 #include "globalstruct.h"       //选择框按钮全局结构
 #include <math.h>               //数学
@@ -10,7 +11,7 @@
 #include "monster.h"          //怪物类
 #include "selectionbox.h"     //选择框
 #include "startfrom.h"        //开始
-#include "mywindow.h"         //界面切换
+#include "music.h"            //背景音乐
 
 //鼠标点击区域宏
 #define MouClickRegion(X, Width, Y, Height)     \
@@ -44,7 +45,7 @@ MainWindow::MainWindow(int LevelNumber) : LevelNumber(LevelNumber)
     this->setFixedSize(1040, 640);
 
     //设置标题
-    setWindowTitle("游戏界面");
+    setWindowTitle("Play");
 
     //按钮
     QPushButton * btn = new QPushButton(this);
@@ -52,18 +53,12 @@ MainWindow::MainWindow(int LevelNumber) : LevelNumber(LevelNumber)
     btn->move(40,40);
     connect(btn,&QPushButton::clicked,this,&QMainWindow::close);
 
-    //界面切换
-    Mywindow * scene = new Mywindow;
-    connect(btn,&QPushButton::clicked,this,[=](){
-        this->close();
-        scene->show();
-    });
 
     //提示胜利标签
     QLabel *victorylable = new QLabel(this);
     victorylable->move(176, 180);
     victorylable->setFont(QFont("楷体", 110));
-    victorylable->setText(QString("游戏胜利"));
+    victorylable->setText(QString("You Win!"));
     victorylable->hide();
 
     QTimer* timer2 = new QTimer(this);      //用于插入怪物定时器
@@ -143,13 +138,13 @@ MainWindow::MainWindow(int LevelNumber) : LevelNumber(LevelNumber)
     moneylable->move(20, 40);       //位置
     setStyleSheet("color:white");   //设置颜色
     moneylable->setFont(QFont("微软雅黑", 24));             //设置金钱标签属性
-    moneylable->setText(QString("金钱：%1").arg(money));    //显示金钱信息
+    moneylable->setText(QString("Money：%1").arg(money));    //显示金钱信息
 
     //生命值标签
     QLabel *lifelable = new QLabel(this);
     lifelable->setGeometry(20, 100, 220, 40);   //设置控件位置和大小
     lifelable->setFont(QFont("微软雅黑", 24));
-    lifelable->setText(QString("生命：%1").arg(life));
+    lifelable->setText(QString("Life：%1").arg(life));
 
     //定时器每时每刻执行防御塔父类数组的活动函数
     QTimer* timer = new QTimer(this);
@@ -208,7 +203,7 @@ MainWindow::MainWindow(int LevelNumber) : LevelNumber(LevelNumber)
                 MonsterVec.erase(Moni);         //怪物走到终点则删除这个怪物
 
                 life--;                         //我们的生命数量-1
-                lifelable->setText(QString("生命：%1").arg(life));
+                lifelable->setText(QString("Life：%1").arg(life));
 
                 if (life <= 0) this->close();   //生命值为0时关闭该窗口
 
@@ -226,7 +221,7 @@ MainWindow::MainWindow(int LevelNumber) : LevelNumber(LevelNumber)
                     {   //击中怪物时
                         tbullvec.erase(bullit);     //删除子弹
 
-                        (*monit)->SetHealth((*monit)->GetHealth() - defei->GetAttack());      //敌人血量 = 本身血量减去 当前炮塔攻击力
+                        (*monit)->SetHealth((*monit)->GetHealth() - defei->GetAttack());      //敌人血量 = 本身血量 减去 当前炮塔攻击力
 
                         //将击中的怪物中心的坐标插入到爆炸效果数组
                         ExploEffectCoor.push_back(new ExploStr(CoorStr((*monit)->GetX() + ((*monit)->GetWidth() >> 1), (*monit)->GetY() + ((*monit)->GetHeight() >> 1)),
@@ -241,7 +236,7 @@ MainWindow::MainWindow(int LevelNumber) : LevelNumber(LevelNumber)
 
                             MonsterVec.erase(monit);    //删除怪物
                             money += RewardMoney;       //击败怪物增加金钱
-                            moneylable->setText(QString("金钱：%1").arg(money));//刷新标签
+                            moneylable->setText(QString("Money：%1").arg(money));//刷新标签
                         }
 
                         //这里不能将防御塔目标怪物设为空，因为防御塔的子弹攻击到的怪物不一定是该防御塔的目标怪物
@@ -278,7 +273,7 @@ void MainWindow::IrodMonsProgDefa(CoorStr** Waypointarr1, CoorStr** Waypointarr2
         InsterMonster(0, 0, 1); //第几条路径、第几个起始点、怪物编号
     }
     else if(counter > 14 && counter <= 34)
-    {//在、两路插入小恐龙和鲨鱼
+    {//两路插入小恐龙和鲨鱼
         InsterMonster(0, 0, 1);
         InsterMonster(1, 1, 2);
     }
@@ -288,7 +283,7 @@ void MainWindow::IrodMonsProgDefa(CoorStr** Waypointarr1, CoorStr** Waypointarr2
         InsterMonster(1, 1, 3);
     }
     else if (counter > 35 && counter <= 52)
-    {//两路插入狮子、狮子、小恐龙
+    {//插入狮子，狮子，小恐龙
         InsterMonster(0, 2, 4);
         InsterMonster(0, 0, 4);
         InsterMonster(1, 1, 1);
@@ -299,7 +294,7 @@ void MainWindow::IrodMonsProgDefa(CoorStr** Waypointarr1, CoorStr** Waypointarr2
         InsterMonster(1, 1, 3);
     }
     if (counter > 52 && counter <= 71)
-    {//插入鲨鱼、蜗牛、小恐龙、狮子
+    {//插入鲨鱼，蜗牛，小恐龙，狮子
         InsterMonster(0, 2, 2);
         InsterMonster(0, 0, 5);
         InsterMonster(1, 3, 1);
@@ -618,13 +613,13 @@ void MainWindow::mousePressEvent(QMouseEvent *ev)
 }
 
 //鼠标移动事件  测试炮台旋转
-//void MainWindow::mouseMoveEvent(QMouseEvent *ev)
-//{
-//    for(auto defei : DefeTowerVec)
-//        defei->SetRotatAngle(atan2(ev->y() - defei->GetUpLeftY() + 40, ev->x() - defei->GetUpLeftX()) * 180 / 3.1415);     //计算炮塔旋转的度数
+void MainWindow::mouseMoveEvent(QMouseEvent *ev)
+{
+    for(auto defei : DefeTowerVec)
+        defei->SetRotatAngle(atan2(ev->y() - defei->GetUpLeftY() + 40, ev->x() - defei->GetUpLeftX()) * 180 / 3.1415);     //计算炮塔旋转的度数
 
-//    update();
-//}
+    update();
+}
 
 
 //析构释放内存

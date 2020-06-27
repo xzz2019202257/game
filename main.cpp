@@ -1,4 +1,4 @@
-//#include "mainwindow.h"
+#include "mainwindow.h"
 #include "startfrom.h"      //开始场景
 #include <QApplication>
 

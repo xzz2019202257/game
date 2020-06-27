@@ -4,7 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui \
+            multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,7 +28,7 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     defensetowerpit.cpp \
-    mywindow.cpp \
+    music.cpp \
     selectionbox.cpp \
     defetowerparent.cpp \
     greenturret.cpp \
@@ -37,10 +38,11 @@ SOURCES += \
     bigturret.cpp \
     startfrom.cpp
 
+
 HEADERS += \
         mainwindow.h \
     defensetowerpit.h \
-    mywindow.h \
+    music.h \
     selectionbox.h \
     globalstruct.h \
     defetowerparent.h \

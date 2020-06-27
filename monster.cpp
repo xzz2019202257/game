@@ -74,13 +74,13 @@ bool Monster::Move()
     }
 
     //如果怪物的坐标和路径点坐标几乎重合，则删除这个路径点
-//    if (Waypoint.at(0)->y >= my && Waypoint.at(0)->y <= my + 14 && Waypoint.at(0)->x >= mx && Waypoint.at(0)->x <= mx + 14)
+//if (Waypoint.at(0)->y >= my && Waypoint.at(0)->y <= my + 14 && Waypoint.at(0)->x >= mx && Waypoint.at(0)->x <= mx + 14)
     if (Waypoint.at(0)->y == my && Waypoint.at(0)->x == mx)
     {
-        delete Waypoint.begin();                //释放坐标点内存
+        //delete Waypoint.begin();    //##在这里释放内存会导致游戏进行时自动结束
         Waypoint.erase(Waypoint.begin());       //从数组中删除
 
-//        return false;
+    //   return false;   // 返回false在if之外
     }
 
     return false;

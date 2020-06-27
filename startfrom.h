@@ -13,6 +13,7 @@ class StartFrom : public QWidget
 
 public:
     explicit StartFrom(QWidget *parent = 0);
+    void paintEvent(QPaintEvent *);         //绘图事件
     ~StartFrom();
 
 private:
