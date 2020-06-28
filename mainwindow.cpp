@@ -34,7 +34,7 @@ inline bool MainWindow::DeductionMoney(int money)
 {
     if(this->money - money < 0) return true; //判断金钱是否足够
     this->money -= money; //扣除金钱
-    moneylable->setText(QString("金钱：%1").arg(this->money)); //刷新标签文本
+    moneylable->setText(QString("Money：%1").arg(this->money)); //刷新标签文本
     return false;
 }
 
@@ -285,7 +285,7 @@ void MainWindow::IrodMonsProgDefa(CoorStr** Waypointarr1, CoorStr** Waypointarr2
     else if (counter > 35 && counter <= 52)
     {//插入狮子，狮子，小恐龙
         InsterMonster(0, 2, 4);
-        InsterMonster(0, 0, 4);
+        //InsterMonster(0, 0, 4);
         InsterMonster(1, 1, 1);
     }
     if(counter > 52 && counter <= 56)
@@ -295,9 +295,9 @@ void MainWindow::IrodMonsProgDefa(CoorStr** Waypointarr1, CoorStr** Waypointarr2
     }
     if (counter > 52 && counter <= 71)
     {//插入鲨鱼，蜗牛，小恐龙，狮子
-        InsterMonster(0, 2, 2);
+        //InsterMonster(0, 2, 2);
         InsterMonster(0, 0, 5);
-        InsterMonster(1, 3, 1);
+        //InsterMonster(1, 3, 1);
         InsterMonster(1, 1, 4);
     }
 
@@ -485,7 +485,7 @@ void MainWindow::DrawRangeAndUpgrade(QPainter& painter)
         {   //画出防御塔攻击范围
             painter.setPen(QPen(Qt::red));  //使用红色画出范围
             painter.drawEllipse(QPoint(DisplayRangeX + 40, DisplayRangeY + 40), defei->GetRange(), defei->GetRange());
-            painter.drawPixmap(DisplayRangeX + 10, DisplayRangeY - 80, 60, 60, QPixmap(":/image/升级按钮1.png"));
+            painter.drawPixmap(DisplayRangeX + 10, DisplayRangeY - 80, 60, 60, QPixmap(":/image/upgrade.png"));
         }
 }
 
@@ -495,7 +495,7 @@ void MainWindow::DrawExplosion(QPainter& painter)
     //显示所有爆炸效果
     for (auto expli : ExploEffectCoor)
             painter.drawPixmap(expli->coor.x - (expli->ExplRangeWidth >> 1), expli->coor.y - (expli->ExplRangeHeight >> 1),
-                expli->ExplRangeWidth, expli->ExplRangeHeight, QPixmap(QString(":/image/爆炸效果%1.png").arg(expli->index)));
+                expli->ExplRangeWidth, expli->ExplRangeHeight, QPixmap(QString(":/image/explosion%1.png").arg(expli->index)));
 }
 
 //绘图事件

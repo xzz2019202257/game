@@ -14,8 +14,10 @@ StartFrom::StartFrom(QWidget *parent) :
     this->setFixedSize(1040,640);
     ui->setupUi(this);
 
+    //开始界面标题
     setWindowTitle("Begin");
 
+    //背景音乐
     QMediaPlaylist *list= new QMediaPlaylist;
     list->addMedia(QUrl("qrc:/image/game.mp3"));
     list->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
@@ -51,6 +53,7 @@ StartFrom::StartFrom(QWidget *parent) :
 
 }
 
+//主界面背景图片
 void StartFrom::paintEvent(QPaintEvent *){
     QPainter painter(this);
     QPixmap pixmap(":/image/back.jpg");

@@ -12,27 +12,27 @@ Monster::Monster(CoorStr **pointarr, int arrlength, int x, int y, int fid) :
     //确定不同怪物的生命值
     switch (id)
     {
-    case 1: //小恐龙怪1
+    case 1: //敌人1
         health = 100;   //生命值
         mwidth = 64, mheight = 64;  //宽高
         ImgPath = ":/image/monster1.png";
         break;
-    case 2: //鱼怪2
+    case 2: //敌人2
         health = 120;
         mwidth = 86, mheight = 64;
         ImgPath = ":/image/monster2.png";
         break;
-    case 3: //飞龙怪3
+    case 3: //敌人3
         health = 650;
         mwidth = 160, mheight = 120;
         ImgPath = ":/image/monster3.png";
         break;
-    case 4: //狮子怪4
+    case 4: //敌人4
         health = 310;
         mwidth = 98, mheight = 70;
         ImgPath = ":/image/monster4.png";
         break;
-    case 5: //蜗牛怪5
+    case 5: //敌人5
         health = 200;
         mwidth = 90, mheight = 76;
         ImgPath = ":/image/monster5.png";
@@ -74,7 +74,7 @@ bool Monster::Move()
     }
 
     //如果怪物的坐标和路径点坐标几乎重合，则删除这个路径点
-//if (Waypoint.at(0)->y >= my && Waypoint.at(0)->y <= my + 14 && Waypoint.at(0)->x >= mx && Waypoint.at(0)->x <= mx + 14)
+
     if (Waypoint.at(0)->y == my && Waypoint.at(0)->x == mx)
     {
         //delete Waypoint.begin();    //##在这里释放内存会导致游戏进行时自动结束

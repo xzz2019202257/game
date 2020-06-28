@@ -6,7 +6,7 @@ LightTurret::LightTurret(int x, int y, int FUpLeftX, int FUpLeftY, int Fwidth, i
     //初始化成员变量，这里不能用初始化列表
     mx = x, my = y;
     BaseImgPath = QString(":/image/greenbase.png");
-    DefImgPath = QString(":/image/cannonlight.png");
+    DefImgPath = QString(":/image/cannonlight1.png");
     width = Fwidth, height = Fheight;
     UpLeftX = FUpLeftX, UpLeftY = FUpLeftY;
 
